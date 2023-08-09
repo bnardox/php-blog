@@ -16,7 +16,7 @@
     <br>
     <div class="container">
         <div class="card mb-3">
-            <a href="/blog/news.php" style="text-decoration:none; color:currentColor;">
+            <a href="/blog/news.php" style="text-decoration:none; color:currentColor">
                 <div class="card-body">
                     <h5 class="card-title" >Manchete</h5>
                     <p class="card-text">Subtitulo</p>
