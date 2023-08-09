@@ -1,3 +1,17 @@
+<?php
+include "config.php";
+
+
+$sql = "SELECT * FROM usuarios; ";
+$query = $msqli->query($sql) or die("Houve um erro na conexão com o banco de dados!");
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
