@@ -2,8 +2,26 @@
 include "config.php";
 
 
-$sql = "SELECT * FROM usuarios; ";
-$query = $msqli->query($sql) or die("Houve um erro na conexão com o banco de dados!");
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(empty($_POST['email']) && empty($_POST['senha'])){
+        echo "<div class='alert alert-danger' role='alert'>Todos os dados devem estar preenchidos!</div>";
+    }else{
+        $email = mysqli_real_escape_string($msqli, $_POST['email']);
+        $senha = mysqli_real_escape_string($msqli, md5($_POST['senha']));
+        $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$senha'";
+        $query = $msqli->query($sql) or die("Houve um erro na conexão com o banco de dados!");
+        if($query->num_rows == 0){
+            echo "<div class='alert alert-warning' role='alert'>Usuário não encontrado!</div>";
+        }else{
+            header('Location: /blog/painel.php');
+        }
+
+    }
+}
+
+
+
+
 
 
 
