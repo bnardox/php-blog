@@ -1,6 +1,6 @@
 <?php
 include "config.php";
-
+session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($_POST['email']) && empty($_POST['senha'])){
@@ -13,19 +13,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if($query->num_rows == 0){
             echo "<div class='alert alert-warning' role='alert'>Usuário não encontrado!</div>";
         }else{
+            $get_info = $query->fetch_assoc();
+            $_SESSION['id'] = $get_info['id'];
+            $_SESSION['email'] = $get_info['email'];
+            $_SESSION['nome'] = $get_info['nome'];
             header('Location: /blog/painel.php');
         }
 
     }
 }
-
-
-
-
-
-
-
-
 
 ?>
 
