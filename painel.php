@@ -72,15 +72,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <h4>Suas publicações:</h4>
     <hr>
 
-
-
-    <div class="card mb-3">
-        <a href="/blog/news.php?id=1" style="text-decoration:none; color:currentColor;">
-            <div class="card-body">
-                <h5 class="card-title" >Manchete</h5>
+    <?php
+        $sql = "SELECT * FROM posts";
+        $query_all = $msqli->query($sql) or die('Houve um erro na conexão com o banco de dados!');
+        if($query_all->num_rows == 0){
+            echo "Você ainda não fez nenhuma publicação...";
+        }else{           
+            while($get_info = $query_all->fetch_assoc())
+            echo "
+            <div class='card mb-3'>
+                <a href='/blog/news.php?id=".$get_info['id']."' style='text-decoration:none; color:currentColor;'>
+                    <div class='card-body'>
+                        <h5 class='card-title' >".$get_info['titulo']."</h5>
+                    </div>
             </div>
-    </div>
-        </a>
+                </a>";
+        }
+    ?>
 </div>
 </body>
 </html>
