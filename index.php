@@ -30,11 +30,11 @@ include "config.php";
             while($get_info = $query_all->fetch_assoc())
             echo "
             <div class='card mb-3'>
-                <a href='/blog/news.php?id=".$get_info['id']."' style='text-decoration:none; color:currentColor;'>
+                <a href='/blog/news.php?id=".htmlspecialchars($get_info['id'])."' style='text-decoration:none; color:currentColor;'>
                     <div class='card-body'>
-                        <h5 class='card-title' >".$get_info['titulo']."</h5>
-                        <p class='card-text'>".$get_info['subtitulo']."</p>
-                        <p class='card-text'><small class='text-body-secondary'>".$get_info['dta']."</small></p>
+                        <h5 class='card-title' >".htmlspecialchars($get_info['titulo'])."</h5>
+                        <p class='card-text'>".htmlspecialchars($get_info['subtitulo'])."</p>
+                        <p class='card-text'><small class='text-body-secondary'>".htmlspecialchars($get_info['dta'])."</small></p>
                     </div>
             </div>
                 </a>";
