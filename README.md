@@ -12,3 +12,9 @@ no seu banco de dados.
 * nome
 * email
 * senha
+#### Colunas da tabela "posts":
+* id
+* titulo
+* subtitulo
+* conteudo
+* dta
