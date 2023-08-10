@@ -1,3 +1,9 @@
+<?php
+
+include "config.php";
+
+?>
+
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -15,15 +21,25 @@
     </nav>
     <br>
     <div class="container">
-        <div class="card mb-3">
-            <a href="/blog/news.php" style="text-decoration:none; color:currentColor">
-                <div class="card-body">
-                    <h5 class="card-title" >Manchete</h5>
-                    <p class="card-text">Subtitulo</p>
-                    <p class="card-text"><small class="text-body-secondary">01/01/2000</small></p>
-                </div>
-        </div>
-            </a>
+    <?php
+        $sql = "SELECT * FROM posts";
+        $query_all = $msqli->query($sql) or die('Houve um erro na conexão com o banco de dados!');
+        if($query_all->num_rows == 0){
+            echo "Você ainda não fez nenhuma publicação...";
+        }else{           
+            while($get_info = $query_all->fetch_assoc())
+            echo "
+            <div class='card mb-3'>
+                <a href='/blog/news.php?id=".$get_info['id']."' style='text-decoration:none; color:currentColor;'>
+                    <div class='card-body'>
+                        <h5 class='card-title' >".$get_info['titulo']."</h5>
+                        <p class='card-text'>".$get_info['subtitulo']."</p>
+                        <p class='card-text'><small class='text-body-secondary'>".$get_info['dta']."</small></p>
+                    </div>
+            </div>
+                </a>";
+        }
+    ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
