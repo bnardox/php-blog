@@ -22,7 +22,7 @@ include "config.php";
     <br>
     <div class="container">
     <?php
-        $sql = "SELECT * FROM posts";
+        $sql = "SELECT * FROM posts ORDER BY id DESC";
         $query_all = $msqli->query($sql) or die('Houve um erro na conexão com o banco de dados!');
         if($query_all->num_rows == 0){
             echo "Você ainda não fez nenhuma publicação...";
