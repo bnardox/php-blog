@@ -21,6 +21,7 @@ $query = $msqli->query($sql) or die ('Houve um erro na conexão com o banco de d
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Blog pessoal | Publicação</span>
+            <a type="submit" class="btn-close" disabled aria-label="Close" href="/blog/"></a>
         </div>
     </nav>
     <br>
