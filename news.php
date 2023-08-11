@@ -1,3 +1,14 @@
+<?php
+
+include "config.php";
+$id = mysqli_real_escape_string($msqli, $_GET['id']);
+
+$sql = "SELECT * FROM posts WHERE id=".$id;
+$query = $msqli->query($sql) or die ('Houve um erro na conexão com o banco de dados!');
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,11 +24,23 @@
         </div>
     </nav>
     <br>
-    <div class="container">
-        <h1 class="card-title">Meu primeiro post</h1>
-        <hr>
-        <h5 class="card-text">Aqui ficaria o subtítulo</h5>
-        <p class="card-text" style="margin-top:20px">Conteúdo do post</p>
+    <div class='container' style='margin-top:0px;'>
+<?php
+
+if($query->num_rows == 0){
+    echo "<div class='alert alert-danger' role='alert'>Notícia não encontrada</div>";
+}else{
+    $get_info = $query->fetch_assoc();
+    echo "
+    <h1 class='card-title'>".$get_info['titulo']."</h1>
+    <hr>
+    <h5 class='card-text'>".$get_info['subtitulo']."</h5>
+    <p class='card-text' style='margin-top:20px'>".$get_info['conteudo']."</p>
+    <small><p class='card-text' style='margin-top:25px'>Postado em: ".$get_info['dta']."</p></small>";
+    }
+        
+?>
+
     </div>
 </body>
 </html>
